@@ -8,7 +8,7 @@ import Brand from "./Brand";
 import DropDownProfile from "./DropDownProfile";
 import {Avatar, Button} from "@material-ui/core";
 import {ThemeContext} from "../../api/Theme";
-import headphones from '../assets/img/headphones.svg';
+import profilepic from '../assets/img/avatar2.jpg';
 
 function Navigation() {
 
@@ -39,7 +39,7 @@ function Navigation() {
             <SearchBar/>
             <div className="profile" onClick={handleOpenProfile}>
                 <Button className={"Dropdown-btn"}>
-                    <img src={headphones} style={{width:'60px', background:'rgba(255, 255, 255, 0.344)',borderRadius: '50%', padding:'10px'}} alt="" />
+                    <img src={profilepic} style={{width:'60px', background:'rgba(255, 255, 255, 0.344)',borderRadius: '50%', padding:'3px'}} alt="" />
                 </Button>
                 {
                     isOpenProfile &&
