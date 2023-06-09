@@ -1,11 +1,12 @@
 #main {
   font-family: Consolas, sans-serif;
   background: #794141;
-  background: linear-gradient(110deg, #eb4559 50%, #f78259 50%);
+  background: linear-gradient(110deg, #00165a 50%, #3a0086 50%);
   height: 100vh;
   text-align: center;
   display: flex;
   flex-flow: column wrap;
+  
   .nav-item {
     height: 10vh;
     display: flex;
@@ -21,12 +22,12 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    height: 90vh;
+    height: 80vh;
     .main-row-img{
       flex-basis: 50%;
       flex-grow: 1;
       .head-phone-img {
-        width: 60%;
+        width: 80%;
       }
     }
     .main-row-text{

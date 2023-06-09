@@ -1,10 +1,10 @@
 <h1 align="center">
-   Vusic | The music destination you want.
+   MELO | Decentralized Music
 </h1>
 
 <div align="center">
 
-![Home Page](https://drive.google.com/uc?id=1ayxhKGDHtysZPMqti6k4ZY072nm3I3MZ)
+![Home Page](https://drive.google.com/uc?export=view&id=1BtDgstkMOSCvzW_aFFWc7fYGNGgACekc)
 
     A music app made with the help of React.js.
     
@@ -19,12 +19,4 @@
     * ###### [material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)
     * ###### [context API](https://reactjs.org/docs/context.html)
     * ###### [scss](https://sass-lang.com/)
-   
 
-## Attribution
-    
-[Icons](www.flaticon.com) made by Freepikfrom 
-
-[Music](https://ncs.io/music) by NCS
-
-    Please make sure you fork the repository
