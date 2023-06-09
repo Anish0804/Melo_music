@@ -20,3 +20,8 @@
     * ###### [context API](https://reactjs.org/docs/context.html)
     * ###### [scss](https://sass-lang.com/)
 
+## STEPS TO RUN 
+
+### npm i
+### npm run start
+
