@@ -22,6 +22,15 @@
 
 ## STEPS TO RUN 
 
-### `npm i`
-### `npm run start`
+### 1. Run tests
+`npm i`
+
+### 2. Run tests
+`$ npx hardhat test`
+
+### 3. Start Hardhat node
+`$ npx hardhat node`
+
+### 6. Start frontend
+`$ npm run start`
 
