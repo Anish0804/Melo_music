@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import './App.scss';
 import Home from "../components/Pages/Home";
+import Create from "../components/Pages/Create";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Login from "../components/Pages/Login";
 import {ThemeContext, themes} from "../api/Theme";
@@ -34,6 +35,7 @@ const App = () => {
                     <Switch>
                         <Route path="/" exact component={Login}/>
                         <Route path="/home" component={Home}/>
+                        <Route path="/create" component={Create}/>
                     </Switch>
                 </Router>
             </>

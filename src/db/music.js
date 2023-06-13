@@ -142,7 +142,23 @@ let musicDB = [
             download: "http://ncs.io/Ignite",
             stream: "http://youtu.be/zbqgv0mMfwk"
         }
-    }
+    },
+    {
+      id: 9,
+      name: "Turn up the speakers",
+      author_name: " Martin Garrix",
+      img: "over-my-head-1602154826-mOiKzOJDe6.jpg",
+      lang: "ENGLISH",
+      type: "electronic",
+      timesPlayed: 0,
+      musicName: "ipfs://bafybeicid2hjdychewbuxqgi5trqv6whmwa6g7trwltqxvmruoyv7zncgi/04%20tumse%20milna%20.mp3",
+      attribution: {
+          song: "ROY KNOX - Over My Head (Feat. Mike Robert) [NCS Release]",
+          musicBy: "NoCopyrightSounds",
+          download: "http://ncs.io/OverMyHead",
+          stream: null
+      }
+  }
 ];
 
 export default musicDB;
