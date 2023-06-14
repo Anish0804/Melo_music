@@ -14,8 +14,12 @@ import FooterSelectMusic from "../fragment/FooterSelectMusic";
 import CurrentPlayingLarge from "../fragment/CurrentPlayingLarge";
 import Search from "./Search";
 import About from "./About";
+import Generator from "./Generator";
+import Purchase from "./Purchase"
+import Mint from "./Mint"
 import Playlist from "../fragment/Playlist";
 import {Skeleton} from "@material-ui/lab";
+
 
 function getCurrPage(pathName) {
     switch (pathName) {
@@ -29,6 +33,12 @@ function getCurrPage(pathName) {
             return <AddMusic/>
         case "/home/about":
             return <About/>
+        case "/home/generator":
+            return <Generator/>
+        case "/home/purchase":
+            return <Purchase/>
+        case "/home/mint":
+            return <Mint/>
         default:
             if (pathName.startsWith("/home/playlist/")) {
                 return <Playlist/>
@@ -38,7 +48,10 @@ function getCurrPage(pathName) {
 }
 
 function Home() {
-
+    const [loading, setLoading] = useState(true)
+    const [account, setAccount] = useState(null)
+     const [nft, setNFT] = useState({})
+     const [marketplace, setMarketplace] = useState({})
 
     const [screenSize, setScreenSize] = useState(undefined);
     const [currMusic, setCurrMusic] = useState(null);
