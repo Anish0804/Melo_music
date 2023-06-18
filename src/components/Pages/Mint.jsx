@@ -5,16 +5,55 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import { Row, Form, Button } from 'react-bootstrap';
 import { NFTStorage, File } from 'nft.storage';
+import MarketplaceAbi from '../contractsData/Marketplace.json'
+import MarketplaceAddress from '../contractsData/Marketplace-address.json'
+import NFTAbi from '../contractsData/NFT.json'
+import NFTAddress from '../contractsData/NFT-address.json'
 
 const client = new NFTStorage({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE2RkI0NDc5QUVEMDU3RTA5MUMyM0VhRjE5RTdjYWQyMjFEZTZlMmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MTIzNjE2MTQ5MiwibmFtZSI6Im5mdHN0b3JhZ2UifQ.nzL-gbeL_9VZymTjM5Oz2xpGoqsUc9FMnLGxKvfnapQ' })
 
 
-const Mint = ({ marketplace, nft }) => {
+const Mint = () => {
     const [image, setImage] = useState(null)
     const [price, setPrice] = useState(null)
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-  
+
+
+//Start of external
+  const [account, setAccount] = useState(null)
+  const [nft, setNFT] = useState({})
+  const [marketplace, setMarketplace] = useState({})
+  // MetaMask Login/Connect
+  const web3Handler = async () => {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    setAccount(accounts[0])
+    // Get provider from Metamask
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    // Set signer
+    const signer = provider.getSigner()
+
+    window.ethereum.on('chainChanged', (chainId) => {
+      window.location.reload();
+    })
+
+    window.ethereum.on('accountsChanged', async function (accounts) {
+      setAccount(accounts[0])
+      await web3Handler()
+    })
+    loadContracts(signer)
+  }
+  const loadContracts = async (signer) => {
+    // Get deployed copies of contracts
+    const marketplace = new ethers.Contract(MarketplaceAddress.address, MarketplaceAbi.abi, signer)
+    setMarketplace(marketplace)
+    const nft = new ethers.Contract(NFTAddress.address, NFTAbi.abi, signer)
+    setNFT(nft)
+    //setLoading(false)
+  }
+  //End of external
+
+
     const uploadToIPFS = async (event) => {
       event.preventDefault()
       const file = event.target.files[0]
@@ -42,8 +81,7 @@ const Mint = ({ marketplace, nft }) => {
           description,
           image
         })
-    
-        mintThenList(metadata)
+         mintThenList(metadata)
       } catch(error) {
         console.log("NFT.Storage metadata upload error: ", error)
       }
