@@ -1,9 +1,16 @@
 import React from 'react';
 import './css/About.scss';
+import '../assets/scss/Navigation.scss';
 import Container from "../fragment/Container";
 import { useState, useEffect } from 'react'
 import { ethers } from "ethers"
 import { Row, Col, Card, Button } from 'react-bootstrap'
+import '../assets/scss/ImageCard.scss';
+import '../assets/scss/MusicCardContainer.scss';
+import PlayCircleFilledWhiteIcon from "@material-ui/icons/ShopOutlined";
+import Name from "../fragment/Name";
+import {Skeleton} from "@material-ui/lab";
+import Box from "@material-ui/core/Box";
 
 
 const Purchase = ({ marketplace, nft }) => {
@@ -57,29 +64,27 @@ const Purchase = ({ marketplace, nft }) => {
         <Container>
         <div className="flex justify-center">
             {items.length > 0 ?
-            <div className="px-5 container">
-                <Row xs={1} md={2} lg={4} className="g-4 py-5">
+            <div class="music-card-container">
                 {items.map((item, idx) => (
-                    <Col key={idx} className="overflow-hidden">
-                    <Card>
-                        <Card.Img variant="top" src={`https://ipfs.io/ipfs/${item.image.replace('ipfs://', '')}`} />
-                        <Card.Body color="secondary">
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Text>
-                            {item.description}
-                        </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                        <div className='d-grid'>
-                            <Button onClick={() => buyMarketItem(item)} variant="primary" size="lg">
-                            Buy for {ethers.utils.formatEther(item.totalPrice)} ETH
-                            </Button>
+                    <Col key={idx} className="overflow-hidden music-card">
+                      <div className={"music-card-cover"} >
+                            <img src={`https://ipfs.io/ipfs/${item.image.replace('ipfs://', '')}`} alt={"image"}/>
+                            <div className="play-circle">
+                                <PlayCircleFilledWhiteIcon/>
+                            </div>
                         </div>
-                        </Card.Footer>
-                    </Card>
+
+                        <React.Fragment>
+                            <Name name={item.name} className={"song-name"} length={item.name.length}/>
+                            <Name name={item.description} className={"author-name"} length={item.description.length}/>
+                        </React.Fragment>
+                        <div>
+                            <button className="Buy-btn" onClick={() => buyMarketItem(item)}>
+                              {ethers.utils.formatEther(item.totalPrice)} ETH
+                            </button>
+                        </div>
                     </Col>
                 ))}
-                </Row>
             </div>
             : (
                 <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
