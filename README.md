@@ -35,8 +35,8 @@ web3int
 
 
 ### 4. Run deployment script
-In a separate terminal execute:
-`npx hardhat run ./scripts/aideploy.js --network localhost`
+In a separate terminal execute:\
+`npx hardhat run ./scripts/aideploy.js --network localhost`\
 `npx hardhat run ./scripts/marketplacedeploy.js --network localhost`
 
 ### 6. Start frontend
