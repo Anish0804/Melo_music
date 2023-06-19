@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 import { Row, Form, Button } from 'react-bootstrap';
 import { NFTStorage, File } from 'nft.storage';
+import './css/Generator.scss';
 
 
 const client = new NFTStorage({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDE2RkI0NDc5QUVEMDU3RTA5MUMyM0VhRjE5RTdjYWQyMjFEZTZlMmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MTIzNjE2MTQ5MiwibmFtZSI6Im5mdHN0b3JhZ2UifQ.nzL-gbeL_9VZymTjM5Oz2xpGoqsUc9FMnLGxKvfnapQ' })
@@ -35,7 +36,8 @@ const Mint = ({ marketplace, nft }) => {
     }
     
   
-    const createNFT = async () => {
+    const createNFT = async (e) => {
+      e.preventDefault()
       if (!image || !price || !name || !description) return
       try{
         const metadata = await client.store({
@@ -68,29 +70,56 @@ const Mint = ({ marketplace, nft }) => {
   
     return (
     <Container>
-      <div className="container-fluid mt-5 justify-content-center" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-        <div className="row">
-          <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '1000px' }}>
-            <div className="content mx-auto">
-              <Row className="g-4">
-                <Form.Control
-                  type="file"
-                  required
-                  name="file"
-                  onChange={uploadToIPFS}
-                />
-                <Form.Control onChange={(e) => setName(e.target.value)} size="lg" required type="text" placeholder="Name" />
-                <Form.Control onChange={(e) => setDescription(e.target.value)} size="lg" required as="textarea" placeholder="Description" />
-                <Form.Control onChange={(e) => setPrice(e.target.value)} size="lg" required type="number" placeholder="Price in ETH" />
-                <div className="d-grid px-0">
-                  <Button onClick={createNFT} variant="primary bg-gradient" size="lg">
-                    Create & List NFT!
-                  </Button>
-                </div>
-              </Row>
-            </div>
-          </main>
-        </div>
+      <div className="container-fluid mt-5 justify-content-center" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh', minWidth:'20vh'}}>
+      <div className="row">
+        <main role="main" >
+          <div className="form-contain">
+  <form className='aigenform' onSubmit={createNFT}>
+    <div>
+      <label htmlFor="file">File:</label><br/>
+      <input
+        id="file"
+        type="file"
+        required
+        name="file"
+        onChange={uploadToIPFS}
+      />
+    </div>
+    <div>
+      <label htmlFor="name">Name:</label><br/>
+      <input
+        id="name"
+        onChange={(e) => setName(e.target.value)}
+        required
+        type="text"
+        placeholder="Name"
+      />
+    </div>
+    <div>
+      <label htmlFor="description">Description:</label><br/>
+      <input
+        id="description"
+        type="text"
+        onChange={(e) => setDescription(e.target.value)}
+        required
+        placeholder="Description"
+      />
+    </div>
+    <div>
+      <label htmlFor="price">Price in ETH:</label><br/>
+      <input
+        id="price"
+        onChange={(e) => setPrice(e.target.value)}
+        required
+        type="number"
+        placeholder="Price in ETH"
+      />
+    </div>
+    <input type="submit" value="Create & List NFT" />
+  </form>
+          </div>
+        </main>
+      </div>
       </div>
       </Container>
     );

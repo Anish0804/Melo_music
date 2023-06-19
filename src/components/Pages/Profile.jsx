@@ -72,11 +72,55 @@ function Profile({ marketplace, nft, account }) {
     useEffect(() => {
       loadPurchasedItems()
     }, [])
+    const [listedItems, setListedItems] = useState([])
+  const [soldItems, setSoldItems] = useState([])
+  const loadListedItems = async () => {
+    // Load all sold items that the user listed
+    const itemCount = await marketplace.itemCount()
+    let listedItems = []
+    let soldItems = []
+    for (let indx = 1; indx <= itemCount; indx++) {
+      const i = await marketplace.items(indx)
+      if (i.seller.toLowerCase() === account) {
+        // get uri url from nft contract
+        const uri = await nft.tokenURI(i.tokenId)
+        console.log(uri)
+        console.log((`https://ipfs.io/ipfs/${uri.split('//')[1]}`))
+        // use uri to fetch the nft metadata stored on ipfs 
+        const response = await fetch(`https://ipfs.io/ipfs/${uri.split('//')[1]}`)
+        const metadata = await response.json()
+        // get total price of item (item price + fee)
+        const totalPrice = await marketplace.getTotalPrice(i.itemId)
+        // define listed Item object
+        let item = {
+          totalPrice,
+          price: i.price,
+          itemId: i.itemId,
+          name: metadata.name,
+          description: metadata.description,
+          image: metadata.image
+        }
+        listedItems.push(item)
+        // Add listed item to sold items array if sold
+        if (i.sold) soldItems.push(item)
+      }
+    }
+    setLoading(false)
+    setListedItems(listedItems)
+    setSoldItems(soldItems)
+  }
+
+  useEffect(() => {
+    loadListedItems()
+  }, [])
+
+
+
     if (loading) return (
       <main style={{ padding: "1rem 0" }}>
         <h2>Loading...</h2>
       </main>
-    )
+    ) 
     return (
         <Container>
             <div className={"Profile"}>
@@ -106,7 +150,8 @@ function Profile({ marketplace, nft, account }) {
                             }
                         </div>
                     </div>
-                    <h3>My Purchases</h3>
+            <div>
+            <h3 className="top-profile" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>My Purchases</h3>
             {purchases.length > 0 ?
             <div className="music-card-container">
                 {purchases.map((item, idx) => (
@@ -132,10 +177,41 @@ function Profile({ marketplace, nft, account }) {
             </div>
             : (
                 <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <h2>No listed assets</h2>
+                <h2>My Purchases empty</h2>
                 </main>
             )}
+            </div>
+<div>
+<h3 className="top-profile" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>My Listed Items</h3>
+            {listedItems.length > 0 ?
+            <div className="music-card-container">
+                {listedItems.map((item, idx) => (
+                    <Col key={idx} className="overflow-hidden music-card">
+                      <div className={"music-card-cover"} >
+                            <img src={`https://ipfs.io/ipfs/${item.image.replace('ipfs://', '')}`} alt={"image"}/>
+                            <div className="play-circle">
+                     
+                            </div>
+                        </div>
 
+                        <React.Fragment>
+                            <Name name={item.name} className={"song-name"} length={item.name.length}/>
+                            <Name name={item.description} className={"author-name"} length={item.description.length}/>
+                        </React.Fragment>
+                        <div>
+                            <button className="Buy-btn">
+                              {ethers.utils.formatEther(item.totalPrice)} ETH
+                            </button>
+                        </div>
+                    </Col>
+                ))}
+            </div>
+            : (
+                <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <h2>My Listed Items Empty</h2>
+                </main>
+            )}
+        </div>
                 </div>
             </div>
         </Container>

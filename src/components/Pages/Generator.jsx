@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/About.scss';
-import './css/Generator.css';
+import './css/Generator.scss';
 import Container from "../fragment/Container";
 import { useState, useEffect } from 'react';
 import { NFTStorage, File } from 'nft.storage'
@@ -134,18 +134,19 @@ const Generator = () => {
     <Container>
       <div>
         <div className='form'>
-          <form onSubmit={submitHandler}>
+          <form className="aigenform" onSubmit={submitHandler}>
             <input type="text" placeholder="Create a name..." onChange={(e) => { setName(e.target.value) }} />
             <input type="text" placeholder="Create a description..." onChange={(e) => setDescription(e.target.value)} />
             <input type="submit" value="Create & Mint" />
           </form>
 
-          <div  style={{backgroundColor: 'white'}}className="image">
+          <div className="image">
             {!isWaiting && image ? (
               <img src={image} alt="AI generated image" />
             ) : isWaiting ? (
               <div className="image__placeholder">
                 <Spinner animation="border" />
+              
                 <p>{message}</p>
               </div>
             ) : (
