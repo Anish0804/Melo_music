@@ -24,7 +24,7 @@ web3int
 
 ## STEPS TO RUN 
 
-### 1. Run tests
+### 1. Install Dependencies
 `npm i`
 
 ### 2. Run tests
