@@ -14,13 +14,14 @@ function SideBar() {
                     <span>LIBRARY</span>
                 </p>
                 <SideBarOptions className={"lib-sub"} Icon={HomeOutlined} href={"/home"} title={"Home"} />
-                <SideBarOptions className={"lib-sub"} Icon={ExploreOutlined} href={"/home/about"}  title={"About"}/>
                 <SideBarOptions className={"lib-sub"} Icon={SearchOutlined} href={"/home/search"}  title={"Search"}/>
                 <SideBarOptions className={"lib-sub"} Icon={HowToVoteTwoTone} href={"/home/generator"}  title={"Generator"}/>
                 <SideBarOptions className={"lib-sub"} Icon={HowToVoteTwoTone} href={"/home/purchase"}  title={"Purchase"}/>
                 <SideBarOptions className={"lib-sub"} Icon={HowToVoteTwoTone} href={"/home/mint"}  title={"Mint"}/>
-                <SideBarOptions className={"lib-sub"} Icon={SearchOutlined} href={"/create"} title={"Create"} />
-                {/*<SideBarOptions className={"lib-sub"} Icon={AlbumIcon} href={"/home/album"}  title={"Album"}/>
+                
+                <SideBarOptions className={"lib-sub"} Icon={ExploreOutlined} href={"/home/about"}  title={"About"}/>
+                {/*<SideBarOptions className={"lib-sub"} Icon={SearchOutlined} href={"/create"} title={"Create"} />
+                <SideBarOptions className={"lib-sub"} Icon={AlbumIcon} href={"/home/album"}  title={"Album"}/>
                 <SideBarOptions className={"lib-sub"} Icon={EmojiPeopleIcon} href={"/home/artist"}  title={"Artist"}/>*/}
             </div>
             <div className="aside-bar-container playlist">

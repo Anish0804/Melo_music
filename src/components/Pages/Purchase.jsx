@@ -64,12 +64,12 @@ const Purchase = ({ marketplace, nft }) => {
         <Container>
         <div className="flex justify-center">
             {items.length > 0 ?
-            <div class="music-card-container">
+            <div className="music-card-container">
                 {items.map((item, idx) => (
                     <Col key={idx} className="overflow-hidden music-card">
                       <div className={"music-card-cover"} >
                             <img src={`https://ipfs.io/ipfs/${item.image.replace('ipfs://', '')}`} alt={"image"}/>
-                            <div className="play-circle">
+                            <div className="play-circle" onClick={() => buyMarketItem(item)}>
                                 <PlayCircleFilledWhiteIcon/>
                             </div>
                         </div>

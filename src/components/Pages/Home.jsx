@@ -26,14 +26,14 @@ import NFTAbi from '../contractsData/NFT.json'
 import NFTAddress from '../contractsData/NFT-address.json'
 let flag=0;
 
-function getCurrPage(pathName, marketplace, nft) {
+function getCurrPage(pathName, marketplace, nft, account) {
     switch (pathName) {
         case "/home":
             return <MusicCardContainer/>
         case "/home/search":
             return <Search/>
         case "/home/profile":
-            return <Profile/>
+            return <Profile marketplace={marketplace} nft={nft} account={account}/>
         case "/home/add":
             return <AddMusic/>
         case "/home/about":
@@ -93,8 +93,8 @@ function Home() {
 
     let pathname = window.location.pathname;
     useEffect(() => {
-        setCurrPage(getCurrPage(pathname, marketplace, nft))
-    }, [pathname, marketplace, nft]);
+        setCurrPage(getCurrPage(pathname, marketplace, nft, account))
+    }, [pathname, marketplace, nft, account]);
 
     window.addEventListener("resize", handleResize);
 
