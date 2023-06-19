@@ -38,3 +38,22 @@ button{
 ::-webkit-scrollbar-thumb:hover {
   background: #a2d5f2;
 }
+
+.Buy-btn {
+  padding: 0px 8px;
+  margin-left:55px;
+  margin-top:10px;
+  font-size: 1.1rem;
+  transition: color .15s ease-in-out;
+  background-color: transparent;
+  color: #ffffff !important;
+  border:solid rgba(255, 255, 255, 0.481) 1px;
+  border-radius:5px;
+}
+
+.Buy-btn:hover {
+  background-color: #07689f !important;
+  transform: scale(1.05);
+  text-decoration: underline #333;
+  text-decoration: none;
+}
