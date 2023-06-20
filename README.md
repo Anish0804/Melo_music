@@ -24,7 +24,7 @@ web3int
 
 ## STEPS TO RUN 
 
-### 1. Run tests
+### 1. Install Dependencies
 `npm i`
 
 ### 2. Run tests
@@ -35,15 +35,9 @@ web3int
 
 
 ### 4. Run deployment script
-In a separate terminal execute:
-`$ npx hardhat run ./scripts/deploy.js --network localhost`
-`npx hardhat run ./scripts/aideploy.js --network localhost`
+In a separate terminal execute:\
+`npx hardhat run ./scripts/aideploy.js --network localhost`\
 `npx hardhat run ./scripts/marketplacedeploy.js --network localhost`
 
 ### 6. Start frontend
 `$ npm run start`
-
-
-Home.js -> Purchase
-Appai -> Generator
-Create.js -> Mint
